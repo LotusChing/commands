@@ -1,0 +1,2 @@
+#!/bin/bash
+netstat -tunlp|egrep -v 'rpc|ntpd|sshd|cups|mas|dhc'
