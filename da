@@ -1,0 +1,13 @@
+#!/bin/bash
+Trash="/tmp/.Trash"
+CMD='mv'
+Date=`date +%F`
+UnixTS=`date +%s`
+
+# 被删除的文件及目录会存放/tmp/.Trash下，当天日期的文件夹内
+# 为避免文件名重复，文件名前面加上了Unix时间戳
+[ -d ${Trash}/${Date} ] || mkdir -p ${Trash}/${Date}
+for file in `echo $*`
+do
+    mv $file ${Trash}/${Date}/${UnixTS}-${file}
+done
