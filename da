@@ -11,3 +11,6 @@ for file in `echo $*`
 do
     mv $file ${Trash}/${Date}/${UnixTS}-${file}
 done
+
+# Unix时间戳换正常时间
+# date -d @时间戳
