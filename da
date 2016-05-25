@@ -5,7 +5,7 @@ UnixTS=`date +%s`
 Days="+3"
 
 # 清理超过三天的数据，清理后创建一个标识文件在当天的目录下，避免一天内重复清理操作
-[ ! -f ${Trash}/${Date}/clean ] && find  ${Trash} -ctime ${Days} |xargs rm -rf {} && touch ${Trash}/${Date}/clean
+[ ! -f ${Trash}/${Date}/clean ] &>/dev/null && find  ${Trash} -ctime ${Days} |xargs rm -rf {} && touch ${Trash}/${Date}/clean
     
 
 # 被删除的文件及目录会存放/tmp/.Trash下，当天日期的文件夹内
