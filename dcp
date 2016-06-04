@@ -1,2 +1,2 @@
 #!/bin/bash 
-/usr/bin/docker cp blog:/usr/share/nginx/html/tarball/ $1
+/usr/bin/docker cp $1 blog:/usr/share/nginx/html/tarball/
