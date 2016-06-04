@@ -1,12 +1,17 @@
 #!/bin/bash
 Trash="/tmp/.Trash"
-CMD='mv'
 Date=`date +%F`
 UnixTS=`date +%s`
+Days="+3"
 
 # 被删除的文件及目录会存放/tmp/.Trash下，当天日期的文件夹内
-# 为避免文件名重复，文件名前面加上了Unix时间戳
 [ -d ${Trash}/${Date} ] || mkdir -p ${Trash}/${Date}
+
+# 清理超过三天的数据，清理后创建一个标识文件在当天的目录下，避免一天内重复清理操作
+[ ! -f ${Trash}/${Date}/clean ] &>/dev/null && find  ${Trash} -ctime ${Days} |xargs rm -rf {} && touch ${Trash}/${Date}/clean
+
+
+# 为避免文件名重复，文件名前面加上了Unix时间戳
 for file in `echo $*`
 do
     mv $file ${Trash}/${Date}/${UnixTS}-${file}
